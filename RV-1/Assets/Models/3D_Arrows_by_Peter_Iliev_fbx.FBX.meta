@@ -1,21 +1,37 @@
 fileFormatVersion: 2
-guid: 5c39ec134a75d4a87a4a69a1be8dc5de
-timeCreated: 1509061457
-licenseType: Pro
+guid: 5f81caedb6fe3284a88069a4bbbc34ee
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Icosahedron_GEO
+    100002: Arrow
+    100004: Arrow01
+    100006: Arrow02
     400000: //RootNode
-    400002: Icosahedron_GEO
-    2300000: Icosahedron_GEO
-    3300000: Icosahedron_GEO
-    4300000: Icosahedron_GEO
+    400002: Arrow
+    400004: Arrow01
+    400006: Arrow02
+    2100000: No Name
+    2300000: Arrow
+    2300002: Arrow01
+    2300004: Arrow02
+    3300000: Arrow
+    3300002: Arrow01
+    3300004: Arrow02
+    4300000: Arrow
+    4300002: Arrow01
+    4300004: Arrow02
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 2188fe617358dc84f9067ba3f3bea938, type: 2}
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -28,35 +44,46 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
-    isReadable: 0
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    importVisibility: 1
     importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 4
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
