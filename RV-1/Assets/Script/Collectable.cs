@@ -8,7 +8,8 @@ public class Collectable : MonoBehaviour {
     {
         RED_BOX,
         GREEN_BOX,
-        BLUE_BOX
+        BLUE_BOX,
+        YELLOW_BOX
     }
 
     public CollectableType type;
