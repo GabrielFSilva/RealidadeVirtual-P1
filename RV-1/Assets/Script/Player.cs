@@ -18,11 +18,16 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
+        Vector3 __rot = playerCamera.transform.forward;
+        __rot.y = 0f;
+        __rot.Normalize();
+
         // Editor Only movement
-        transform.Translate(Vector3.forward * Time.deltaTime * Input.GetAxis("Vertical") * movementSpeed);
         transform.Rotate(Vector3.up * Time.deltaTime * rotationSpeed * Input.GetAxis("Horizontal"), Space.World);
+        transform.Translate(__rot * Time.deltaTime * Input.GetAxis("Vertical") * movementSpeed, Space.World);
+
         transform.Rotate(Vector3.up * Time.deltaTime * rotationSpeed * selectedSideMark, Space.World);
-        transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * selectedFrontMark);
+        transform.Translate(__rot * Time.deltaTime * movementSpeed * selectedFrontMark, Space.World);
     }
     
     public void FrontMarkSelected(int mark)

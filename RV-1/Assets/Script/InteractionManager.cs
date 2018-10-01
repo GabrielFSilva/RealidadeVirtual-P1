@@ -16,6 +16,8 @@ public class InteractionManager : MonoBehaviour
     public float loadTime;
     private float currentLoadTime;
 
+    public GameObject selectedObject;
+
     // Use this for initialization
     void Start () {
         eventTriggers = new List<EventTrigger>(FindObjectsOfType<EventTrigger>());
@@ -43,24 +45,32 @@ public class InteractionManager : MonoBehaviour
             currentLoadTime += Time.deltaTime;
             loadingInteractionImage.fillAmount = currentLoadTime / loadTime;
             if (currentLoadTime >= loadTime)
-                Debug.Log("Finished");
+                SelectionFinished();
         }
 	}
+
+    private void SelectionFinished()
+    {
+        loading = false;
+        loadingBaseImage.SetActive(false);
+
+        if (selectedObject == null)
+            return;
+    }
 
     public void StartLoading(PointerEventData data)
     {
         loading = true;
         loadingBaseImage.SetActive(true);
-        //pointerRenderer.enabled = false;
         currentLoadTime = 0f;
-        Debug.Log("test");
+        selectedObject = data.pointerEnter;
     }
 
     public void StopLoading(PointerEventData data)
     {
-        Destroy(data.hovered[0]);
         loading = false;
         loadingBaseImage.SetActive(false);
-        //pointerRenderer.enabled = true;
+        if (selectedObject == data.pointerEnter)
+            selectedObject = null;
     }
 }
