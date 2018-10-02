@@ -19,14 +19,19 @@ public class InteractionManager : MonoBehaviour
     public GameObject selectedObject;
     public Collectable collectedObject;
 
+    public Image uiCollectedObjectImage;
+    public List<Color> uiCollectedColors;
 
     // Use this for initialization
     void Start () {
         eventTriggers = new List<EventTrigger>(FindObjectsOfType<EventTrigger>());
 
-       
+
         foreach (EventTrigger evt in eventTriggers)
         {
+            if (evt.gameObject.name.Contains("Marker"))
+                continue;
+
             EventTrigger.Entry entry = new EventTrigger.Entry();
             entry.eventID = EventTriggerType.PointerEnter;
             entry.callback.AddListener((data) => { StartLoading((PointerEventData)data); });
@@ -48,6 +53,16 @@ public class InteractionManager : MonoBehaviour
             loadingInteractionImage.fillAmount = currentLoadTime / loadTime;
             if (currentLoadTime >= loadTime)
                 SelectionFinished();
+        }
+
+        if (collectedObject == null)
+        {
+            uiCollectedObjectImage.gameObject.SetActive(false);
+        }
+        else
+        {
+            uiCollectedObjectImage.gameObject.SetActive(true);
+            uiCollectedObjectImage.color = uiCollectedColors[(int)collectedObject.type];
         }
 	}
 
