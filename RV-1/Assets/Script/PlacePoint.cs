@@ -18,6 +18,8 @@ public class PlacePoint : MonoBehaviour
     {
         collectable.transform.parent = placeTransform;
         collectable.transform.localPosition = Vector3.zero;
+        collectable.transform.localRotation = Quaternion.identity;
+        collectable.transform.localScale = Vector3.one;
         collectable.GetComponent<Collider>().enabled = false;
         GetComponent<Collider>().enabled = false;
         collectable.gameObject.SetActive(true);

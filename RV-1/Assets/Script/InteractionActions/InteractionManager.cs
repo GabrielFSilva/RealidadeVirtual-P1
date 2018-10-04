@@ -18,14 +18,11 @@ public class InteractionManager : MonoBehaviour
 
     public GameObject selectedObject;
     public Collectable collectedObject;
-
-    public Image uiCollectedObjectImage;
-    public List<Color> uiCollectedColors;
+    public Transform collectedTransformParent;
 
     // Use this for initialization
     void Start () {
         eventTriggers = new List<EventTrigger>(FindObjectsOfType<EventTrigger>());
-
 
         foreach (EventTrigger evt in eventTriggers)
         {
@@ -54,16 +51,6 @@ public class InteractionManager : MonoBehaviour
             if (currentLoadTime >= loadTime)
                 SelectionFinished();
         }
-
-        if (collectedObject == null)
-        {
-            uiCollectedObjectImage.gameObject.SetActive(false);
-        }
-        else
-        {
-            uiCollectedObjectImage.gameObject.SetActive(true);
-            uiCollectedObjectImage.color = uiCollectedColors[(int)collectedObject.type];
-        }
 	}
 
     private void SelectionFinished()
@@ -74,10 +61,23 @@ public class InteractionManager : MonoBehaviour
         if (selectedObject == null)
             return;
 
-        if (selectedObject.tag == "Collectable" && collectedObject == null)
+        if (selectedObject.tag == "Collectable")
         {
-            collectedObject = selectedObject.GetComponent<Collectable>();
-            collectedObject.Collect();
+            if (collectedObject == null)
+            {
+                collectedObject = selectedObject.GetComponent<Collectable>();
+                collectedObject.transform.parent = collectedTransformParent;
+                collectedObject.transform.localScale = Vector3.one;
+                collectedObject.transform.localPosition = Vector3.zero;
+                collectedObject.GetComponent<Collider>().isTrigger = true;
+            }
+            else if (collectedObject.type == selectedObject.GetComponent<Collectable>().type)
+            {
+                collectedObject.transform.parent = null;
+                collectedObject.transform.localScale = Vector3.one;
+                collectedObject.GetComponent<Collider>().isTrigger = false;
+                collectedObject = null;
+            }
         }
         else if (selectedObject.tag == "Interactable" && collectedObject == null)
         {
